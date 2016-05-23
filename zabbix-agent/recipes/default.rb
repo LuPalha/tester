@@ -80,5 +80,4 @@ end
 service "zabbix-agent" do
   action [ :enable, :restart ]
 end
-end
 
