@@ -9,7 +9,7 @@
 # Recipe for Rails App Server
 #
 
-#node[:setup].each do |application, deploy|
+node[:setup].each do |application, setup|
 
 case node[:platform]
     when 'redhat', 'centos', 'amazon'
@@ -80,4 +80,4 @@ end
 service "zabbix-agent" do
   action [ :enable, :restart ]
 end
-
+end
