@@ -9,7 +9,7 @@
 # Recipe for Rails App Server
 #
 
-node[:setup].each do |application, setup|
+node[:deploy].each do |application, deploy|
 
 case node[:platform]
     when 'redhat', 'centos', 'amazon'
