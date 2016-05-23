@@ -1,0 +1,29 @@
+#!/bin/bash 
+
+declare -A meses
+meses["Jan"]="Jan"
+meses["Fev"]="Feb"
+meses["Mar"]="Mar"
+meses["Abr"]="Apr"
+meses["Mai"]="May"
+meses["Jun"]="Jun"
+meses["Jul"]="Jul"
+meses["Ago"]="Aug"
+meses["Set"]="Sep"
+meses["Out"]="Oct"
+meses["Nov"]="Nov"
+meses["Dez"]="Dec"
+
+dia=`date | awk {'print $3'}`
+mes=`date | awk {'print $2'}`
+
+texto=${meses["$mes"]}
+
+retorno=`cat /var/log/cron* | grep biosystem:daily_tasks | grep "$texto $dia"`
+
+if [ -n $retorno ]; then
+        echo 0
+else
+        echo 1
+fi
+

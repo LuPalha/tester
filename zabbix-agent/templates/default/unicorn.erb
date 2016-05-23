@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#unicorn <%= @app_name %>
+
+if [ $(ps aux | grep unicorn | grep <%= @app_name %> | grep -v grep | wc -l) == 0 ];
+then
+	echo 0;
+else
+	echo 1;
+fi
