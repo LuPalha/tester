@@ -70,7 +70,7 @@ template '/etc/zabbix/scripts/unicorn.sh' do
   variables({ :app_name => "#{application}"})
 end
 
-template '/etc/zabbix/zabbix_agentd.d/userparameter_web-check.conf' do
+template '/etc/zabbix/userparameter_web-check.conf' do
   source 'userparameter_web-check.conf'
   owner 'zabbix'
   group 'zabbix'
