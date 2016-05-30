@@ -2,14 +2,10 @@
 # Cookbook Name:: zabbix-agent
 # Recipe:: default
 #
-# Copyright 2015, YOUR_COMPANY_NAME
+# Copyright 2016, Rivendel
 #
 # All rights reserved - Do Not Redistribute
 #
-# Recipe for Rails App Server
-#
-
-node[:deploy].each do |application, deploy|
 
 case node[:platform]
     when 'redhat', 'centos', 'amazon'
@@ -41,6 +37,34 @@ end
 
 end
 
+directory '/etc/zabbix/scripts' do
+  owner "zabbix"
+  group "zabbix"
+  mode 00755
+  action :create
+end
+
+template '/etc/zabbix/scripts/check-services.sh' do
+  source 'check_services.sh'
+  owner 'zabbix'
+  group 'zabbix'
+  mode '0755'
+end
+
+template '/etc/zabbix/scripts/check-port.sh' do
+  source 'check_port.sh'
+  owner 'zabbix'
+  group 'zabbix'
+  mode '0755'
+end
+
+template '/etc/zabbix/scripts/check-ntp.sh' do
+  source 'check_port.sh'
+  owner 'zabbix'
+  group 'zabbix'
+  mode '0755'
+end
+
 template '/etc/zabbix/zabbix_agentd.conf' do
   source 'zabbix_agentd.rb'
   owner 'zabbix'
@@ -48,36 +72,7 @@ template '/etc/zabbix/zabbix_agentd.conf' do
   mode '0644'
 end
 
-directory '/etc/zabbix/scripts' do
- owner 'root'
- group 'root'
- mode '0755'
- action :create
-end
-
-template '/etc/zabbix/scripts/nginx.sh' do
-  source 'nginx.erb'
-  owner 'zabbix'
-  group 'zabbix'
-  mode '0755'
-end
-
-template '/etc/zabbix/scripts/unicorn.sh' do
-  source 'unicorn.erb'
-  owner 'zabbix'
-  group 'zabbix'
-  mode '0755'
-  variables({ :app_name => "#{application}"})
-end
-
-template '/etc/zabbix/zabbix_agentd.d/userparameter_web-check.conf' do
-  source 'userparameter_web-check.conf'
-  owner 'zabbix'
-  group 'zabbix'
-  mode '0644'
-end
-
 service "zabbix-agent" do
-  action [ :enable, :restart ]
+  action [ :enable, :start ]
 end
-end
+
