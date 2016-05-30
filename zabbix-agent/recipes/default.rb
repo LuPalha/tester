@@ -45,21 +45,21 @@ directory '/etc/zabbix/scripts' do
 end
 
 template '/etc/zabbix/scripts/check-service.sh' do
-  source 'check_service.sh'
+  source 'check-service.sh'
   owner 'zabbix'
   group 'zabbix'
   mode '0755'
 end
 
 template '/etc/zabbix/scripts/check-port.sh' do
-  source 'check_port.sh'
+  source 'check-port.sh'
   owner 'zabbix'
   group 'zabbix'
   mode '0755'
 end
 
 template '/etc/zabbix/scripts/check-ntp.sh' do
-  source 'check_port.sh'
+  source 'check-ntp.sh'
   owner 'zabbix'
   group 'zabbix'
   mode '0755'
