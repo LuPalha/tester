@@ -10,7 +10,7 @@ ListenPort=10050
 ListenIP=<%= node[:opsworks][:instance][:private_ip] %>
 StartAgents=3
 ServerActive=<%= node['zabbix-agent']['hostname'] %>
-Hostname=<%= node[:opsworks][:instance][:hostname] %> - <%= node[:opsworks][:instance][:aws_instance_id] %>
+Hostname=<%= node[:opsworks][:layers][:layershostname] %> - <%= node[:opsworks][:layers][:aws_instance_id] %>
 HostMetadata=<%= node['zabbix-agent']['hostmetadata'] %>
 Include=/etc/zabbix/zabbix_agentd.d/
 UserParameter=check-port[*],/etc/zabbix/scripts/check-port.sh $1 $2
