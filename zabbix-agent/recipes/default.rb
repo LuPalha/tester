@@ -45,7 +45,7 @@ directory '/etc/zabbix/scripts' do
 end
 
 template '/etc/zabbix/scripts/check-service.sh' do
-  source 'check_services.sh'
+  source 'check_service.sh'
   owner 'zabbix'
   group 'zabbix'
   mode '0755'
