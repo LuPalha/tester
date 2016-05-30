@@ -44,7 +44,7 @@ directory '/etc/zabbix/scripts' do
   action :create
 end
 
-template '/etc/zabbix/scripts/check-services.sh' do
+template '/etc/zabbix/scripts/check-service.sh' do
   source 'check_services.sh'
   owner 'zabbix'
   group 'zabbix'
